@@ -8,7 +8,23 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+
+YOUR_SYSTEM_PROMPT = """
+You are a mathematician solving modular arithmetic.
+
+You MUST compute the final numeric result correctly.
+Use reasoning if needed, but keep it short.
+
+Rules:
+- Do not guess
+- Do not stop early
+- Ensure the final answer is mathematically correct
+- Put the final result on the last line exactly as: Answer: <number>
+"""
+
+
+
+
 
 
 USER_PROMPT = """
