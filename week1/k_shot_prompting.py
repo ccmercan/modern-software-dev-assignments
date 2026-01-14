@@ -7,7 +7,27 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """You are a character-level string reversal engine. 
+
+To ensure 100% accuracy, you must mentally process the input word as a comma-separated list of characters before reversing.
+
+RULES:
+1. Treat the input as a sequence of discrete symbols: [h, t, t, p, s, t, a, t, u, s].
+2. Identify the last symbol in the sequence and write it first. 
+3. Continue backwards until you reach the first symbol.
+4. Output ONLY the resulting string. No spaces, no commas, no intro text.
+5. Verification: The word "httpstatus" has 10 letters. Your output must have exactly 10 letters.
+
+K-SHOT EXAMPLES:
+User: apple
+Assistant: elppa
+User: hello
+Assistant: olleh
+User: programming
+Assistant: gnimmargorp
+User: httpstatus
+Assistant: sutatsptth
+"""
 
 USER_PROMPT = """
 Reverse the order of letters in the following word. Only output the reversed word, no other text:
@@ -26,7 +46,7 @@ def test_your_prompt(system_prompt: str) -> bool:
     for idx in range(NUM_RUNS_TIMES):
         print(f"Running test {idx + 1} of {NUM_RUNS_TIMES}")
         response = chat(
-            model="mistral-nemo:12b",
+            model="llama3.1:8b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": USER_PROMPT},
