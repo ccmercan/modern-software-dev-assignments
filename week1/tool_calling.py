@@ -70,7 +70,25 @@ TOOL_REGISTRY: Dict[str, Callable[..., str]] = {
 # ==========================
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT ="""You are a tool-calling assistant.
+
+You MUST respond with a single valid JSON object.
+You MUST call the tool named "output_every_func_return_type".
+You MUST NOT include any text outside the JSON.
+
+Rules:
+- Output JSON only
+- No explanations
+- No markdown
+- No code fences
+
+JSON format:
+{
+  "tool": "output_every_func_return_type",
+  "args": {}
+}
+"""
+
 
 
 def resolve_path(p: str) -> str:
