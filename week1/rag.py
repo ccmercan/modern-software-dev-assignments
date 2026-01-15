@@ -37,7 +37,20 @@ QUESTION = (
 
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+
+You are a coding assistant using Retrieval-Augmented Generation.
+
+Rules:
+- Use ONLY the information provided in the Context section
+- Do NOT invent endpoints, headers, or URLs
+- If something is not in the context, do not guess
+
+Output requirements:
+- Output a single fenced Python code block
+- Include necessary imports
+- Implement exactly the requested function
+"""
 
 
 # For this simple example
@@ -56,7 +69,7 @@ def YOUR_CONTEXT_PROVIDER(corpus: List[str]) -> List[str]:
 
     For example, return [] to simulate missing context, or [corpus[0]] to include the API docs.
     """
-    return []
+    return [corpus[0]]
 
 
 def make_user_prompt(question: str, context_docs: List[str]) -> str:
