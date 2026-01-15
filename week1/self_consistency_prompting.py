@@ -9,7 +9,27 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in! Try to get as close to 100% correctness across all runs as possible.
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+Solve the problem and provide a final numeric answer.
+
+You may reason internally, but keep your response concise.
+Only include the final result on the last line in the format:
+
+Answer: <number>
+
+Here are some examples for you:
+
+Q: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done,
+there will be 21 trees. How many trees did the grove workers plant today?
+A: We start with 15 trees. Later we have 21 trees. The difference must be the number of trees they planted.
+So, they must have planted 21 - 15 = 6 trees. The answer is 6.
+Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?
+A: There are 3 cars in the parking lot already. 2 more arrive. Now there are 3 + 2 = 5 cars. The answer is 5.
+Q: Leah had 32 chocolates and her sister had 42. If they ate 35, how many pieces do they have left in total?
+A: Leah had 32 chocolates and Leah’s sister had 42. That means there were originally 32 + 42 = 74
+chocolates. 35 have been eaten. So in total they still have 74 - 35 = 39 chocolates. The answer is 39.
+
+"""
 
 USER_PROMPT = """
 Solve this problem, then give the final answer on the last line as "Answer: <number>".
