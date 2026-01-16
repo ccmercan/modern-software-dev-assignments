@@ -15,7 +15,22 @@ Keep the implementation minimal.
 """
 
 # TODO: Fill this in!
-YOUR_REFLEXION_PROMPT = ""
+YOUR_REFLEXION_PROMPT = """
+You are fixing a previous incorrect implementation.
+
+You will be given:
+- The previous Python function
+- A list of test failures explaining what went wrong
+
+Your task:
+- Update the function to fix ALL listed failures
+- Do not repeat the same mistakes
+- Keep the implementation minimal and correct
+
+Output requirements:
+- Output ONLY a single fenced Python code block
+- Do not include explanations, comments, or prose
+"""
 
 
 # Ground-truth test suite used to evaluate generated code
@@ -92,11 +107,15 @@ def generate_initial_function(system_prompt: str) -> str:
 
 
 def your_build_reflexion_context(prev_code: str, failures: List[str]) -> str:
-    """TODO: Build the user message for the reflexion step using prev_code and failures.
+    failures_block = "\n".join(f"- {f}" for f in failures) 
+    return (
+        "The previous implementation failed the following tests:\n"
+        f"{failures_block}\n\n"
+        "Previous implementation:\n"
+        f"```python\n{prev_code}\n```\n\n"
+        "Revise the function to fix ALL the issues listed above."
+    )
 
-    Return a string that will be sent as the user content alongside the reflexion system prompt.
-    """
-    return ""
 
 
 def apply_reflexion(
