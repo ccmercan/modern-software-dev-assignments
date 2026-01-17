@@ -107,8 +107,11 @@ def extract_action_items_llm(text: str) -> List[str]:
     if not text or not text.strip():
         return []
     
-    # Get the model name from environment variable, default to a small model
-    model_name = os.getenv("OLLAMA_MODEL", "qwen3:1.7b")
+    # Get the model name from configuration
+    from ..config import get_settings
+    
+    settings = get_settings()
+    model_name = settings.ollama_model
     
     # Define the JSON schema for structured output (array of strings)
     schema = {
